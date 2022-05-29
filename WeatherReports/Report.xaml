@@ -1,0 +1,53 @@
+﻿<Window x:Class="WeatherReports.Report"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeatherReports"
+        mc:Ignorable="d"
+        Title="Report" Height="645.971" Width="1188.324" Closed="Window_Closed" FontWeight="Bold" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/sky.jpg" Stretch="UniformToFill"></ImageBrush>
+        </Grid.Background>
+        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="27,570,0,0" VerticalAlignment="Top" Width="110" Click="BtnBack_Click" Height="30" FontSize="18" Background="LightGray"/>
+        <Label x:Name="lblInfo1" Content="      Weather Forecast" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1180" FontSize="22" Height="44" FontWeight="Bold" Foreground="White" Background="Black" Margin="0,10,0,0" FontStyle="Italic"/>
+        <TextBox x:Name="txbDate" HorizontalAlignment="Left" Height="31" Margin="925,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" FontSize="20" BorderThickness="0" IsReadOnly="True" Cursor="Arrow" Foreground="White" Background="Black"/>
+        <Label x:Name="lblInfoDate" Content="Today date is:" HorizontalAlignment="Left" Margin="794,14,0,0" VerticalAlignment="Top" Width="126" FontSize="18" Foreground="White" Background="Black" FontWeight="Bold" FontStyle="Italic"/>
+        <DataGrid x:Name="dgData" HorizontalAlignment="Left" AutoGenerateColumns="False" ItemsSource="{Binding}" Height="493" Margin="27,59,0,0" VerticalAlignment="Top" Width="1110" IsReadOnly="True" Background="Transparent" BorderBrush="{x:Null}" TextOptions.TextFormattingMode="Display" LoadingRow="DgData_LoadingRow" EnableRowVirtualization="False" CanUserResizeRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="LightBlue"/>
+                    <Setter Property="BorderThickness" Value="1,1,1,1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="MinHeight" Value="40"/>
+                </Style>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="BorderThickness" Value="0,0,0,0"/>
+                    <Setter Property="FontSize" Value="22"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="MinHeight" Value="112"/>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="          City" Binding="{Binding Dcity}" Width="140"></DataGridTextColumn>
+                <DataGridTextColumn Header="          Date" Binding="{Binding Ddate}" Width="140"></DataGridTextColumn>
+                <DataGridTextColumn Header="   Min Temp" Binding="{Binding DminTemp}" Width="130"></DataGridTextColumn>
+                <DataGridTextColumn Header="   Max Temp" Binding="{Binding DmaxTemp}" Width="130"></DataGridTextColumn>
+                <DataGridTextColumn Header="  Precipitation" Binding="{Binding Dprecipitation}" Width="130"></DataGridTextColumn>
+                <DataGridTextColumn Header="     Humidity" Binding="{Binding Dhumidity}" Width="130"></DataGridTextColumn>
+                <DataGridTextColumn Header="  Wind Speed" Binding="{Binding DwindSpeed}" Width="130"></DataGridTextColumn>
+                <DataGridTemplateColumn Header ="          Weather" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Dimage}" Height="80" Width="80" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
